@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .schedule-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1,
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        label,
+        select,
+        input[type="time"] {
+            display: block;
+            margin: 10px auto;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+    <title>Class Schedule Planner</title>
+</head>
+
+<body>
+    <div class="schedule-container">
+        <h1>Class Schedule Planner</h1>
+        <form id="classForm">
+            <label for="course">Course:</label>
+            <input type="text" id="course" required>
+
+            <label for="professor">Professor:</label>
+            <input type="text" id="professor" required>
+
+            <label for="day">Day:</label>
+            <select id="day" required>
+                <option value="mon">Monday</option>
+                <option value="tue">Tuesday</option>
+                <option value="wed">Wednesday</option>
+                <option value="thu">Thursday</option>
+                <option value="fri">Friday</option>
+            </select>
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" required>
+
+            <button type="button" id="addButton">Add Class</button>
+        </form>
+
+        <div class="schedule">
+            <h2>Your Schedule:</h2>
+            <ul id="scheduleList"></ul>
+        </div>
+    </div>
+
+    <script>
+        const classForm = document.getElementById('classForm');
+        const addButton = document.getElementById('addButton');
+        const scheduleList = document.getElementById('scheduleList');
+
+        addButton.addEventListener('click', addClassToSchedule);
+
+        function addClassToSchedule() {
+            const course = document.getElementById('course').value;
+            const professor = document.getElementById('professor').value;
+            const day = document.getElementById('day').value;
+            const time = document.getElementById('time').value;
+
+            const classItem = document.createElement('li');
+            classItem.textContent = `${course} with ${professor} on ${day} at ${time}`;
+
+            scheduleList.appendChild(classItem);
+
+            // Clear form inputs
+            classForm.reset();
+        }
+
+    </script>
+</body>
+
+</html>
